@@ -3,7 +3,7 @@ Creating my own Captain Falcon AI in Super Smash Brothers Melee using the melee 
 
 ## What the bot does currently
 It loops these actions:
-* Jump in place
+* shorthop in place
 * perform a forward ariel attack (called a F-air or Fair)
 * fast falls the Fair
 * L-Cancels
