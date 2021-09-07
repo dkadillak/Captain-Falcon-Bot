@@ -8,7 +8,7 @@ def run_ai():
 
     :return:
     '''
-    console = melee.console.Console(path=r"C:\Users\Devin Kadillak\Documents\FM-Slippi",
+    console = melee.console.Console(path=r"C:\Users\Devin Kadillak\AppData\Roaming\Slippi Launcher\netplay",
                             is_dolphin=True,
                             slippi_address="127.0.0.1")
 
@@ -20,7 +20,7 @@ def run_ai():
                                         port=2,
                                         type=melee.ControllerType.GCN_ADAPTER)
 
-    console.run(iso_path=r"C:\Users\Devin Kadillak\Documents\FM-Slippi\Custom Stages Beta 2.iso")
+    console.run(iso_path=r"C:\Users\Devin Kadillak\Documents\FM-Slippi\melee_v1.02.iso")
 
 
 
@@ -45,7 +45,7 @@ def run_ai():
         sys.exit(-1)
     print("Human Controller connected")
 
-    frameData = melee.framedata.FrameData()
+    #frameData = melee.framedata.FrameData()
 
     while True:
 
@@ -53,6 +53,7 @@ def run_ai():
         gamestate = console.step()
 
         if gamestate is None:
+            print('none')
             continue
 
         # logic for how AI should behave
@@ -65,6 +66,7 @@ def run_ai():
                 move_to_attack(gamestate.players[1], gamestate.players[2], controller)
             '''
         else:
+            print('menu helper')
             # using libmelee's menuhelper to get us in a game
             melee.menuhelper.MenuHelper.menu_helper_simple(gamestate=gamestate,
                                                 controller=controller,
@@ -72,7 +74,7 @@ def run_ai():
                                                 costume=3,
                                                 stage_selected=melee.Stage.FINAL_DESTINATION,
                                                 connect_code="",
-                                                autostart=False,
+                                                autostart=True,
                                                 swag=False)
 
 
@@ -154,8 +156,6 @@ def short_hop_fair(ai_state, controller):
             controller.press_shoulder(melee.enums.Button.BUTTON_L, 1)
             controller.flush()
 
-
-
 def read_slp():
     '''
     Function to read .slp files
@@ -180,5 +180,4 @@ def read_slp():
 # Main
 if __name__ == '__main__':
     run_ai()
-
 
